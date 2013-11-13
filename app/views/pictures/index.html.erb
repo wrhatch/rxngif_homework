@@ -1,6 +1,15 @@
 <h1>All Pictures</h1>
+<%= link_to("New", new_picture_url) %>
+</br>
+</br>
+</br> 
 <% @pictures.each do |pic| %>
-<img width = 100 src=<%= pic.source %>>
+<%= image_tag(pic.source, :width => 200) %>
 <p><%= pic.caption %></p>
+<%= link_to("Show", picture_url(pic.id)) %> |
+<%= link_to("Edit", edit_picture_url(pic.id)) %> |
+<%= link_to("Delete", picture_url(pic.id), :method => "delete") %>
+</br>
+</br>
 </br>
 <% end %>

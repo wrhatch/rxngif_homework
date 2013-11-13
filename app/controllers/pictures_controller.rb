@@ -18,20 +18,21 @@ class PicturesController < ApplicationController
   	newPic.caption = params[:caption]
   	newPic.source = params[:source]
   	newPic.save
+    redirect_to(pictures_url)
   end
 
   def destroy
   	@id = params[:id]
-  	@picture = Picture.find(@id)
-	@picture_url = @picture.source
-	@caption = @picture.caption
+  	picture = Picture.find(@id)
+	  picture.destroy
+    redirect_to(pictures_url)
   end
 
   def edit
   	@id = params[:id]
-	@picture = Picture.find(@id)
-	@picture_url = @picture.source
-	@caption = @picture.caption
+  	@picture = Picture.find(@id)
+  	@picture_url = @picture.source
+  	@caption = @picture.caption
   end
 
   def update
@@ -40,5 +41,6 @@ class PicturesController < ApplicationController
   	pic.caption = params[:caption]
   	pic.source = params[:source]
   	pic.save
+    redirect_to(picture_url(@id))
   end
 end
